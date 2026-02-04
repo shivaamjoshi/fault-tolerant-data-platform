@@ -9,7 +9,7 @@ Silent errors or unhandled inconsistencies are treated as critical failures, as 
 
 For this reason, the platform prioritizes data correctness and transparency over immediacy.
 
-##Design Principles
+## Design Principles
 ### Correctness Over Immediacy
 The platform prioritizes accurate and explainable data over near-real-time updates. Delayed ingestion or incomplete data is considered acceptable and preferable to silently propagating incorrect or assumed values.
 
@@ -28,4 +28,4 @@ The platform’s behavior is driven by configuration rather than code changes ac
 ### Systems Are Built to Be Observed and Tested
 Failures and unexpected behavior are anticipated rather than treated as anomalies. The platform is designed to be observable and verifiable through tests, ensuring that issues are detected early and prevented from reaching the user.
 
-##High-Level Architecture
+## High-Level Architecture
