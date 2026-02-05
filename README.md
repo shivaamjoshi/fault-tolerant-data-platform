@@ -29,3 +29,20 @@ The platform’s behavior is driven by configuration rather than code changes ac
 Failures and unexpected behavior are anticipated rather than treated as anomalies. The platform is designed to be observable and verifiable through tests, ensuring that issues are detected early and prevented from reaching the user.
 
 ## High-Level Architecture
+
+The platform is designed as a set of independent, layered components that follow a clear upstream-to-downstream data flow. Each layer has a well-defined responsibility, limiting blast radius and ensuring system stability when failures occur.
+
+- **Data Sources**  
+  External device and application sources generate semi-structured, evolving, and often incomplete wellbeing data. These sources are treated as untrusted and remain outside the system’s control.
+
+- **Ingestion Layer**  
+  The ingestion layer is responsible for reliably capturing and persisting raw data in its original form. No transformations or assumptions are applied at this stage, ensuring that source data is preserved for traceability and safe reprocessing.
+
+- **Validation and Data Quality Layer**  
+  This layer acts as a trust gate by enforcing data contracts, validating schemas, and detecting missing or invalid data. Records are explicitly classified or rejected before being allowed to progress downstream.
+
+- **Transformation and Metrics Layer**  
+  Domain logic and aggregations are applied in this layer to generate analytics-ready datasets and longitudinal wellbeing metrics. This layer serves as the single source of truth for data meaning and derived insights.
+
+- **Consumption Layer**  
+  Curated datasets are exposed through a read-only interface to support analysis and future AI-driven feedback loops. No transformations or corrective logic are permitted at this stage.
